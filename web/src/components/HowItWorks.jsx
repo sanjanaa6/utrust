@@ -1,66 +1,64 @@
 import React from 'react';
 
-
 const HowItWorks = () => {
   return (
-    <section className="how-it-works-section">
-      <div className="container">
-        <h2 className="how-it-works-title">
-          Discover Your <span className="text-red">Dream Wheels</span>
+    <section style={{ padding: '5rem 0', backgroundColor: '#fff', fontFamily: "'Inter', sans-serif", overflow: 'hidden' }}>
+      <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', textAlign: 'center' }}>
+        <h2 style={{ fontSize: '2.5rem', fontWeight: 500, color: '#111', marginBottom: '4rem' }}>
+          Discover Your <span style={{ color: '#cc0000' }}>Dream Wheels</span>
         </h2>
         
-        <div className="how-it-works-steps">
-          {/* Decorative dashed lines */}
-          <div className="step-connector step-connector-1"></div>
-          <div className="step-connector step-connector-2"></div>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', position: 'relative' }}>
           
-          <div className="step-card">
-            <div className="step-icon-wrapper">
-              <svg width="150" height="120" viewBox="0 0 100 80" fill="none" stroke="#555" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="10" y="10" width="80" height="50" rx="4" />
-                <path d="M10 25h80" />
-                <path d="M50 60v10" />
-                <path d="M35 70h30" />
-                <circle cx="50" cy="40" r="10" />
-              </svg>
+          {/* Arrow 1 */}
+          <div style={{ position: 'absolute', top: '30%', left: '23%', width: '20%', zIndex: 0 }}>
+            <svg width="100%" height="100" viewBox="0 0 200 100" fill="none" style={{ overflow: 'visible' }}>
+              <path d="M 20 80 C 80 80, 120 20, 180 20" stroke="#cbd5e1" strokeWidth="2" strokeDasharray="8 8" fill="none" strokeLinecap="round" />
+              <path d="M 170 12 L 182 20 L 172 28" stroke="#cbd5e1" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </div>
+
+          {/* Arrow 2 */}
+          <div style={{ position: 'absolute', top: '30%', left: '57%', width: '20%', zIndex: 0 }}>
+            <svg width="100%" height="100" viewBox="0 0 200 100" fill="none" style={{ overflow: 'visible' }}>
+              <path d="M 20 20 C 80 20, 120 80, 180 80" stroke="#cbd5e1" strokeWidth="2" strokeDasharray="8 8" fill="none" strokeLinecap="round" />
+              <path d="M 172 72 L 182 80 L 170 88" stroke="#cbd5e1" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </div>
+
+          {/* Step 1 */}
+          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0 1rem', zIndex: 1 }}>
+            <div style={{ height: '220px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem' }}>
+              <img src="/assets/step1.png" alt="Discover Your Ideal Car" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/280x200/f8f9fa/a0aec0?text=Upload+step1.png" }} />
             </div>
-            <h3 className="step-title">Discover Your Ideal Car</h3>
-            <p className="step-desc">
+            <h3 style={{ fontSize: '1.1rem', fontWeight: 500, color: '#333', marginBottom: '0.8rem' }}>Discover Your Ideal Car</h3>
+            <p style={{ fontSize: '0.95rem', color: '#666', lineHeight: 1.5, maxWidth: '280px' }}>
               Explore our wide range and find the perfect match for your needs.
             </p>
           </div>
 
-          <div className="step-card">
-            <div className="step-icon-wrapper">
-              <svg width="150" height="120" viewBox="0 0 100 80" fill="none" stroke="#555" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="10" y="10" width="80" height="50" rx="4" />
-                <path d="M30 40h40" />
-                <path d="M30 30h20" />
-                <path d="M50 60v10" />
-                <path d="M35 70h30" />
-                <circle cx="70" cy="40" r="15" fill="#e2e8f0" stroke="none" />
-              </svg>
+          {/* Step 2 */}
+          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0 1rem', zIndex: 1 }}>
+            <div style={{ height: '220px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem' }}>
+              <img src="/assets/step2.png" alt="Streamlined Enquiry Process" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/280x200/f8f9fa/a0aec0?text=Upload+step2.png" }} />
             </div>
-            <h3 className="step-title">Streamlined Enquiry Process</h3>
-            <p className="step-desc">
+            <h3 style={{ fontSize: '1.1rem', fontWeight: 500, color: '#333', marginBottom: '0.8rem' }}>Streamlined Enquiry Process</h3>
+            <p style={{ fontSize: '0.95rem', color: '#666', lineHeight: 1.5, maxWidth: '280px' }}>
               Effortlessly reach out about any car you are interested in.
             </p>
           </div>
 
-          <div className="step-card">
-            <div className="step-icon-wrapper">
-              <svg width="100" height="120" viewBox="0 0 60 100" fill="none" stroke="#555" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="10" y="10" width="40" height="80" rx="6" />
-                <path d="M25 15h10" />
-                <circle cx="30" cy="45" r="12" />
-                <path d="M30 45l-4-4m4 4l8-8" stroke="#10b981" />
-              </svg>
+          {/* Step 3 */}
+          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0 1rem', zIndex: 1 }}>
+            <div style={{ height: '220px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem' }}>
+              <img src="/assets/step3.png" alt="Enquiry Sent Successfully!" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/280x200/f8f9fa/a0aec0?text=Upload+step3.png" }} />
             </div>
-            <h3 className="step-title">Enquiry Sent Successfully!</h3>
-            <p className="step-desc">
+            <h3 style={{ fontSize: '1.1rem', fontWeight: 500, color: '#333', marginBottom: '0.8rem' }}>Enquiry Sent Successfully!</h3>
+            <p style={{ fontSize: '0.95rem', color: '#666', lineHeight: 1.5, maxWidth: '280px' }}>
               Sit back and relax. We will be in touch shortly.
             </p>
           </div>
+
         </div>
       </div>
     </section>

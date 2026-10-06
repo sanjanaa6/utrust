@@ -1,13 +1,24 @@
 import React, { useState } from 'react';
 import { Search, ChevronDown, Check, Bookmark, MapPin } from 'lucide-react';
 
-const BuyPage = () => {
+const BuyPage = ({ onCarSelect, initialFilters }) => {
+  const defaultPriceRange = initialFilters?.budget 
+    ? initialFilters.budget.split('-').map(Number)
+    : [50000, 7000000];
+
   const [sortOpen, setSortOpen] = useState(false);
   const [sortBy, setSortBy] = useState('relevance');
-  const [priceRange, setPriceRange] = useState([50000, 7000000]);
+  const [priceRange, setPriceRange] = useState(defaultPriceRange);
+  const [minYear, setMinYear] = useState(initialFilters?.year ? parseInt(initialFilters.year) : 0);
   
   const [filters, setFilters] = useState({
-    brand: [], fuelType: [], color: [], bodyStyle: [], seats: [], owner: [], transmission: []
+    brand: initialFilters?.make ? [initialFilters.make] : [], 
+    fuelType: [], 
+    color: [], 
+    bodyStyle: [], 
+    seats: [], 
+    owner: [], 
+    transmission: initialFilters?.transmission ? [initialFilters.transmission] : []
   });
 
   const handleToggle = (category, value) => {
@@ -30,49 +41,51 @@ const BuyPage = () => {
   const clearAllFilters = () => {
     setFilters({ brand: [], fuelType: [], color: [], bodyStyle: [], seats: [], owner: [], transmission: [] });
     setPriceRange([50000, 7000000]);
+    setMinYear(0);
   };
   
   const cars = [
     {
-      id: 1, title: "2014 Toyota Camry HY...", specs: "64669 Km . Petrol . Automatic . 1st owner", price: "₹16.26 Lakh", location: "Hosur Road, Bangalore", 
-      image: "https://images.unsplash.com/photo-1629897048514-3dd74142df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-      brand: "Toyota", fuelType: "Petrol", bodyStyle: "Sedan", owner: "1st owner", transmission: "automatic", color: "#808080",
-      priceValue: 1626000, year: 2014, km: 64669, seats: "5 seater"
+      id: 1, title: "2023 Toyota Glanza G", specs: "18,362 km • Petrol • Manual", price: "₹7.75 Lakh", location: "Whitefield, Bangalore", 
+      image: "https://assets.spinny.com/sp-file-system/public/2026-10-04/ecb763a444b9458cb69daf8d716629f9/raw/file.JPG",
+      brand: "Toyota", fuelType: "Petrol", bodyStyle: "Hatchback", owner: "1st owner", transmission: "manual", color: "#ffffff",
+      priceValue: 775000, year: 2023, km: 18362, seats: "5 seater", status: "available"
     },
     {
-      id: 2, title: "2019 Maruti Suzuki Vita...", specs: "74249 Km . Diesel . Manual . 1st owner", price: "₹8.95 Lakh", location: "KP Road, Bangalore", 
-      image: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      id: 2, title: "2019 Maruti Suzuki Vitara Brezza", specs: "74,249 km • Diesel • Manual", price: "₹8.95 Lakh", location: "KP Road, Bangalore", 
+      image: "https://assets.spinny.com/sp-file-system/public/2026-10-01/e1e41ec4518b4336bf0e6436fb606d72/raw/file.JPG",
       brand: "Maruti Suzuki", fuelType: "Diesel", bodyStyle: "SUV", owner: "1st owner", transmission: "manual", color: "#ffffff",
-      priceValue: 895000, year: 2019, km: 74249, seats: "5 seater"
+      priceValue: 895000, year: 2019, km: 74249, seats: "5 seater", status: "sold"
     },
     {
-      id: 3, title: "2021 Hyundai Creta 1.5 SX", specs: "56801 Km . Petrol . Automatic . 2nd owner", price: "₹13 Lakh", location: "KP Road, Bangalore", 
-      image: "https://images.unsplash.com/photo-1616423640778-28d1b53229bd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      id: 3, title: "2021 Hyundai Creta 1.5 SX", specs: "56,801 km • Petrol • Automatic", price: "₹13 Lakh", location: "KP Road, Bangalore", 
+      image: "https://assets.spinny.com/sp-file-system/public/2026-10-02/35ffbf1364e945e2a7f9677eb9bd14ad/raw/file.JPG",
       brand: "Hyundai", fuelType: "Petrol", bodyStyle: "SUV", owner: "2nd owner", transmission: "automatic", color: "#ff0000",
-      priceValue: 1300000, year: 2021, km: 56801, seats: "5 seater"
+      priceValue: 1300000, year: 2021, km: 56801, seats: "5 seater", status: "available"
     },
     {
-      id: 4, title: "2020 Honda City ZX", specs: "42000 Km . Petrol . Manual . 1st owner", price: "₹11.50 Lakh", location: "Indiranagar, Bangalore", 
-      image: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      id: 4, title: "2020 Honda City ZX", specs: "42,000 km • Petrol • Manual", price: "₹11.50 Lakh", location: "Indiranagar, Bangalore", 
+      image: "https://mda.spinny.com/sp-file-system/public/2025-02-28/c6b0f11a31974f5da329faa0888e0e6f/raw/file.jpg",
       brand: "Honda", fuelType: "Petrol", bodyStyle: "Sedan", owner: "1st owner", transmission: "manual", color: "#000000",
-      priceValue: 1150000, year: 2020, km: 42000, seats: "5 seater"
+      priceValue: 1150000, year: 2020, km: 42000, seats: "5 seater", status: "booked"
     },
     {
-      id: 5, title: "2022 Tata Nexon EV", specs: "15000 Km . Electric . Automatic . 1st owner", price: "₹14.20 Lakh", location: "Whitefield, Bangalore", 
-      image: "https://images.unsplash.com/photo-1629897048514-3dd74142df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-      brand: "Tata", fuelType: "Electric", bodyStyle: "SUV", owner: "1st owner", transmission: "automatic", color: "#008080",
-      priceValue: 1420000, year: 2022, km: 15000, seats: "5 seater"
+      id: 5, title: "2022 Tata Nexon EV", specs: "15,000 km • Electric • Automatic", price: "₹14.20 Lakh", location: "Whitefield, Bangalore", 
+      image: "https://media.spinny.com/sp-file-system/public/2025-01-17/ce4c5ddd996046719f58b602b77ed1aa/file.JPG",
+      brand: "Tata", fuelType: "Electric", bodyStyle: "SUV", owner: "1st owner", transmission: "automatic", color: "#808080",
+      priceValue: 1420000, year: 2022, km: 15000, seats: "5 seater", status: "available"
     },
     {
-      id: 6, title: "2018 Ford EcoSport", specs: "80000 Km . Diesel . Manual . 2nd owner", price: "₹6.80 Lakh", location: "Koramangala, Bangalore", 
-      image: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      id: 6, title: "2018 Ford EcoSport", specs: "80,000 km • Diesel • Manual", price: "₹6.80 Lakh", location: "Koramangala, Bangalore", 
+      image: "https://assets.spinny.com/sp-file-system/public/2026-07-20/439b3aa021974610a54d528d7eee67e4/raw/file.JPG",
       brand: "Ford", fuelType: "Diesel", bodyStyle: "SUV", owner: "2nd owner", transmission: "manual", color: "#0000ff",
-      priceValue: 680000, year: 2018, km: 80000, seats: "5 seater"
+      priceValue: 680000, year: 2018, km: 80000, seats: "5 seater", status: "available"
     }
   ];
 
   const filteredCars = cars.filter(car => {
     if (car.priceValue < priceRange[0] || car.priceValue > priceRange[1]) return false;
+    if (minYear > 0 && car.year < minYear) return false;
     
     if (filters.brand.length > 0 && !filters.brand.includes(car.brand)) return false;
     if (filters.fuelType.length > 0 && !filters.fuelType.includes(car.fuelType)) return false;
@@ -353,32 +366,63 @@ const BuyPage = () => {
 
             {/* Grid or Empty State */}
             {sortedCars.length > 0 ? (
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '1.5rem' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '1.5rem' }}>
                 {sortedCars.map(car => (
-                  <div key={car.id} style={{ backgroundColor: 'white', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 2px 10px rgba(0,0,0,0.04)' }}>
-                    <div style={{ height: '180px', position: 'relative', backgroundColor: '#f0f0f0' }}>
-                      <img src={car.image} alt={car.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                      <div style={{ position: 'absolute', top: '10px', right: '10px', backgroundColor: 'white', width: '28px', height: '28px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 5px rgba(0,0,0,0.1)', cursor: 'pointer' }}>
-                        <Search size={14} color="#555" />
+                  <div 
+                    key={car.id} 
+                    onClick={() => onCarSelect && onCarSelect(car)} 
+                    style={{ 
+                      backgroundColor: 'white', borderRadius: '12px', overflow: 'hidden', 
+                      boxShadow: '0 4px 15px rgba(0,0,0,0.06)', cursor: 'pointer', 
+                      border: '1px solid #eee', display: 'flex', flexDirection: 'column'
+                    }}
+                  >
+                    <div style={{ height: '210px', position: 'relative', backgroundColor: '#f9f9f9', overflow: 'hidden' }}>
+                      <img src={car.image} alt={car.title} style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: car.status === 'sold' ? 0.7 : 1, filter: car.status === 'sold' ? 'grayscale(30%)' : 'none' }} />
+                      
+                      {car.status === 'sold' && (
+                        <div style={{ position: 'absolute', top: '25px', left: '-35px', transform: 'rotate(-45deg)', backgroundColor: '#d30000', color: 'white', padding: '6px 45px', fontSize: '0.85rem', fontWeight: 800, letterSpacing: '1px', zIndex: 5, boxShadow: '0 4px 10px rgba(0,0,0,0.3)', textAlign: 'center' }}>
+                          SOLD
+                        </div>
+                      )}
+                      
+                      {car.status === 'booked' && (
+                        <div style={{ position: 'absolute', top: '25px', left: '-35px', transform: 'rotate(-45deg)', backgroundColor: '#d30000', color: 'white', padding: '6px 45px', fontSize: '0.85rem', fontWeight: 800, letterSpacing: '1px', zIndex: 5, boxShadow: '0 4px 10px rgba(0,0,0,0.3)', textAlign: 'center' }}>
+                          BOOKED
+                        </div>
+                      )}
+
+
+                      <div style={{ position: 'absolute', top: '12px', right: '12px', backgroundColor: 'rgba(255,255,255,0.95)', width: '32px', height: '32px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 5px rgba(0,0,0,0.1)', cursor: 'pointer', zIndex: 2 }}>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#666" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
                       </div>
                     </div>
                     
-                    <div style={{ padding: '1.25rem' }}>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.5rem' }}>
-                        <h4 style={{ fontSize: '1rem', fontWeight: 700, color: '#222', flex: 1, paddingRight: '10px' }}>{car.title}</h4>
-                        <Bookmark size={20} color="#888" strokeWidth={1.5} style={{ cursor: 'pointer' }} />
-                      </div>
+                    <div style={{ padding: '1rem 1.25rem', flex: 1, display: 'flex', flexDirection: 'column' }}>
+                      <h4 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#111', marginBottom: '0.4rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                        {car.title}
+                      </h4>
                       
-                      <p style={{ fontSize: '0.8rem', color: '#888', marginBottom: '1.5rem', lineHeight: 1.4 }}>
+                      <p style={{ fontSize: '0.85rem', color: '#666', marginBottom: '1.5rem', fontWeight: 500 }}>
                         {car.specs}
                       </p>
                       
-                      <div style={{ fontSize: '1.4rem', fontWeight: 800, color: '#222', marginBottom: '1rem' }}>
+                      <div style={{ fontSize: '1.5rem', fontWeight: 800, color: '#111', marginBottom: '0.2rem' }}>
                         {car.price}
                       </div>
                       
-                      <div style={{ borderTop: '1px solid #f1f1f1', paddingTop: '1rem', display: 'flex', alignItems: 'center', gap: '5px', fontSize: '0.8rem', color: '#666' }}>
-                        <MapPin size={14} /> {car.location}
+                      <div style={{ fontSize: '0.85rem', color: '#666', marginBottom: '0.5rem' }}>
+                        EMI from ₹14,500/m
+                      </div>
+                      
+                      <div style={{ display: 'inline-block', backgroundColor: '#fff5f5', color: '#cc0000', padding: '4px 8px', borderRadius: '4px', fontSize: '0.75rem', fontWeight: 600, border: '1px dashed #cc0000', marginBottom: '1rem', alignSelf: 'flex-start' }}>
+                        🎁 Up to ₹20,000 Exchange Bonus
+                      </div>
+                      
+                      <div style={{ borderTop: '1px solid #eee', paddingTop: '1rem', display: 'flex', justifyContent: 'flex-start', alignItems: 'center', marginTop: 'auto' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '5px', fontSize: '0.85rem', color: '#666', fontWeight: 500 }}>
+                          <MapPin size={14} color="#cc0000" /> {car.location}
+                        </div>
                       </div>
                     </div>
                   </div>

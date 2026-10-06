@@ -230,17 +230,7 @@ button {
 .login-btn:hover {
   color: var(--primary-red);
 }
-.hero-section {
-  position: relative;
-  height: 500px;
-  width: 100%;
-  max-width: 1200px;
-  margin: 1.5rem auto;
-  border-radius: 12px;
-  overflow: hidden;
-  background-color: #333;
-  color: white;
-}
+.hero-section { position: relative; height: calc(100vh - 75px); min-height: 500px; width: 100%; max-width: 100%; margin: 0; background-color: #333; color: white; }
 .hero-image {
   position: absolute;
   top: 0;
@@ -579,3 +569,84 @@ button {
 .brand-tag { white-space: nowrap; padding: 0.5rem 1rem; border: 1px solid #ddd; border-radius: 20px; font-size: 0.85rem; font-weight: 500; color: #555; transition: all 0.2s; cursor: pointer; }
 .brand-tag:hover { border-color: var(--primary-red); color: var(--primary-red); }
 .brand-tag.active { background-color: var(--primary-red); color: white; border-color: var(--primary-red); }
+
+
+/* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 768px) {
+  /* Header */
+  .top-bar-content { flex-direction: column; gap: 0.5rem; text-align: center; justify-content: center; }
+  .header-nav { display: none !important; /* Hide desktop nav on mobile */ }
+  .header-mobile-menu-btn { display: block !important; }
+  
+  /* Hero */
+  .hero-search-box { flex-direction: column !important; padding: 1rem !important; gap: 1rem !important; width: 90% !important; margin-left: auto; margin-right: auto; }
+  .hero-search-box > div { width: 100% !important; flex: none !important; }
+  .hero-search-box .divider { display: none !important; }
+  .hero-search-btn { width: 100% !important; border-radius: 6px !important; margin-top: 10px !important; }
+  
+  /* Cash Your Car */
+  .cash-car-steps { flex-direction: column !important; gap: 2rem !important; }
+  .step-connector { display: none !important; }
+  
+  /* Happy Customers & Testimonials */
+  .slider-arrow, .happy-arrow-left, .happy-arrow-right { display: none !important; } /* Hide arrows on mobile, let them swipe/click tabs */
+  .testimonial-flex { flex-direction: column !important; }
+  .happy-video-container { max-width: 100% !important; }
+  
+  /* Global */
+  h1 { font-size: 2rem !important; }
+  h2 { font-size: 1.8rem !important; }
+  .container { padding: 0 1rem !important; }
+}
+
+
+@media (max-width: 768px) {
+  .search-filter-bar {
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+  .search-filter-bar > div, .search-filter-btn {
+    width: 100% !important;
+  }
+  
+  .hero-overlay { padding: 1.5rem !important; }
+  .trusted-badge { display: none !important; }
+  
+  .cash-car-steps { flex-direction: column !important; }
+  
+  .cars-grid { grid-template-columns: 1fr !important; }
+  
+  .happy-video-container { width: 100% !important; max-width: 100% !important; }
+}
+
+/* --- TESTIMONIALS ANIMATIONS & RESPONSIVENESS --- */
+.testimonial-nav-btn {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.testimonial-nav-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+}
+.testimonial-nav-btn:active {
+  transform: translateY(0) scale(0.95);
+}
+
+@media (max-width: 850px) {
+  .testimonial-card-mobile {
+    flex-direction: column !important;
+  }
+  .testimonial-img-side {
+    flex: 0 0 300px !important;
+    height: 300px !important;
+  }
+  .img-gradient-overlay {
+    background: linear-gradient(to bottom, transparent, rgba(255,255,255,1)) !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .testimonial-img-side {
+    flex: 0 0 250px !important;
+    height: 250px !important;
+  }
+}
+
