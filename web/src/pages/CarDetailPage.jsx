@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronRight, Share2, Bookmark, Star, ChevronDown, ChevronUp, Calculator } from 'lucide-react';
+import { ChevronRight, ChevronLeft, Share2, Bookmark, Star, ChevronDown, ChevronUp, Calculator } from 'lucide-react';
 
 const formatCurrency = (num) => {
   return new Intl.NumberFormat('en-IN', {
@@ -50,24 +50,42 @@ const CarDetailPage = ({ car, onBack }) => {
           {/* Left Column: Media & Info */}
           <div style={{ flex: '1', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
 
-            {/* 360 Viewer Area */}
-            <div style={{ borderRadius: '20px', overflow: 'hidden', backgroundColor: '#f0f2f5', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'ew-resize', minHeight: '500px', boxShadow: 'inset 0 0 50px rgba(0,0,0,0.03)' }}>
-              <img src={car.image} alt={car.title} style={{ width: '90%', height: '90%', objectFit: 'contain', filter: 'drop-shadow(0 20px 30px rgba(0,0,0,0.15))' }} draggable="false" />
+            {/* Gallery Area */}
+            <div style={{ display: 'flex', gap: '1rem', minHeight: '500px', height: '500px' }}>
 
-              <div style={{ position: 'absolute', top: '25px', left: '25px', backgroundColor: 'rgba(255,255,255,0.95)', padding: '8px 16px', borderRadius: '30px', display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.85rem', fontWeight: 700, color: '#111', boxShadow: '0 4px 15px rgba(0,0,0,0.08)', backdropFilter: 'blur(10px)' }}>
-                <div style={{ width: '8px', height: '8px', backgroundColor: '#cc0000', borderRadius: '50%', boxShadow: '0 0 0 3px rgba(204,0,0,0.2)' }}></div>
-                Exterior 360°
-              </div>
-
-              <div style={{ position: 'absolute', top: '25px', right: '25px', display: 'flex', gap: '8px', backgroundColor: 'rgba(255,255,255,0.8)', padding: '6px', borderRadius: '30px', backdropFilter: 'blur(10px)' }}>
-                <div style={{ backgroundColor: 'white', padding: '6px 16px', borderRadius: '20px', fontSize: '0.85rem', fontWeight: 700, color: '#cc0000', boxShadow: '0 2px 8px rgba(0,0,0,0.1)', cursor: 'pointer' }}>Exterior</div>
-                <div style={{ padding: '6px 16px', borderRadius: '20px', fontSize: '0.85rem', fontWeight: 600, color: '#555', cursor: 'pointer', transition: 'all 0.2s' }}>Interior</div>
-              </div>
-
-              <div style={{ position: 'absolute', bottom: '30px', left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: '8px' }}>
-                {[1, 2, 3, 4, 5, 6, 7, 8].map(i => (
-                  <div key={i} style={{ width: i === 1 ? '24px' : '6px', height: '6px', borderRadius: '10px', backgroundColor: i === 1 ? '#cc0000' : '#d1d5db', transition: 'all 0.3s' }}></div>
+              {/* Thumbnails (Left Column) */}
+              <div style={{ width: '120px', display: 'flex', flexDirection: 'column', gap: '12px', overflowY: 'auto', paddingRight: '4px' }}>
+                {[...Array(6)].map((_, i) => (
+                  <div key={i} style={{
+                    width: '100%', height: '80px', borderRadius: '8px', overflow: 'hidden', flexShrink: 0, cursor: 'pointer',
+                    backgroundColor: '#eef0f3',
+                    border: i === 0 ? '2px solid #cc0000' : '2px solid transparent',
+                    opacity: i === 0 ? 1 : 0.6,
+                    transition: 'all 0.2s'
+                  }}>
+                    <img src={car.image} alt={`Thumb ${i + 1}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  </div>
                 ))}
+              </div>
+
+              {/* Main Image Container */}
+              <div style={{ flex: 1, borderRadius: '12px', overflow: 'hidden', backgroundColor: '#e3e6ea', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <img src={car.image} alt={car.title} style={{ width: '85%', height: '85%', objectFit: 'contain' }} draggable="false" />
+
+                {/* Left Arrow */}
+                <div style={{ position: 'absolute', left: '20px', top: '50%', transform: 'translateY(-50%)', width: '36px', height: '36px', borderRadius: '50%', backgroundColor: '#cc0000', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color: 'white', boxShadow: '0 4px 10px rgba(204,0,0,0.3)', transition: 'transform 0.2s' }} onMouseOver={e => e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)'} onMouseOut={e => e.currentTarget.style.transform = 'translateY(-50%) scale(1)'}>
+                  <ChevronLeft size={20} />
+                </div>
+
+                {/* Right Arrow */}
+                <div style={{ position: 'absolute', right: '20px', top: '50%', transform: 'translateY(-50%)', width: '36px', height: '36px', borderRadius: '50%', backgroundColor: '#cc0000', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color: 'white', boxShadow: '0 4px 10px rgba(204,0,0,0.3)', transition: 'transform 0.2s' }} onMouseOver={e => e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)'} onMouseOut={e => e.currentTarget.style.transform = 'translateY(-50%) scale(1)'}>
+                  <ChevronRight size={20} />
+                </div>
+
+                {/* Counter */}
+                <div style={{ position: 'absolute', top: '20px', right: '20px', backgroundColor: 'rgba(0,0,0,0.5)', color: 'white', padding: '6px 14px', borderRadius: '20px', fontSize: '0.85rem', fontWeight: 600, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  1/14
+                </div>
               </div>
             </div>
 
@@ -149,7 +167,6 @@ const CarDetailPage = ({ car, onBack }) => {
               <div style={{ fontSize: '2.8rem', fontWeight: 800, color: '#111', marginBottom: '0.5rem', letterSpacing: '-1px' }}>
                 {car.price}
               </div>
-              <p style={{ color: '#888', fontSize: '0.9rem', marginBottom: '1.5rem' }}>Fixed price. No hidden charges.</p>
 
               <div style={{ backgroundColor: '#fff5f5', border: '1px dashed #cc0000', borderRadius: '10px', padding: '12px 16px', marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '12px' }}>
                 <span style={{ fontSize: '1.5rem' }}>🎁</span>
@@ -161,20 +178,20 @@ const CarDetailPage = ({ car, onBack }) => {
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                 <button
-                  onClick={() => setModalType('test_drive')}
+                  onClick={() => setModalType('enquiry')}
                   style={{ backgroundColor: '#111', color: 'white', border: 'none', padding: '16px', borderRadius: '10px', fontSize: '1.05rem', fontWeight: 700, cursor: 'pointer', transition: 'transform 0.2s, background 0.2s', boxShadow: '0 4px 15px rgba(0,0,0,0.1)' }}
                   onMouseOver={e => e.currentTarget.style.transform = 'translateY(-2px)'}
                   onMouseOut={e => e.currentTarget.style.transform = 'translateY(0)'}
                 >
-                  Book Free Test Drive
+                  Make An Enquiry
                 </button>
                 <button
-                  onClick={() => setModalType('enquiry')}
+                  onClick={() => setModalType('test_drive')}
                   style={{ backgroundColor: 'white', color: '#cc0000', border: '2px solid #ffe5e5', padding: '16px', borderRadius: '10px', fontSize: '1.05rem', fontWeight: 700, cursor: 'pointer', transition: 'background 0.2s' }}
                   onMouseOver={e => e.currentTarget.style.backgroundColor = '#fff5f5'}
                   onMouseOut={e => e.currentTarget.style.backgroundColor = 'white'}
                 >
-                  Contact Seller
+                  Request A Test Drive
                 </button>
               </div>
             </div>
@@ -287,7 +304,7 @@ const CarDetailPage = ({ car, onBack }) => {
             </div>
 
             <h2 style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '0.5rem', color: '#0f172a' }}>
-              {modalType === 'enquiry' ? 'Contact Seller' : 'Book Test Drive'}
+              {modalType === 'enquiry' ? 'Make An Enquiry' : 'Request A Test Drive'}
             </h2>
             <p style={{ color: '#64748b', fontSize: '0.95rem', marginBottom: '2.5rem' }}>Enter your details to proceed.</p>
 

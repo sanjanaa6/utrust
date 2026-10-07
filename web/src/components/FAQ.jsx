@@ -40,7 +40,7 @@ const FAQ = () => {
       <div className="container" style={{ maxWidth: '800px', margin: '0 auto', padding: '0 20px' }}>
         
         <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-          <h2 style={{ fontSize: '3rem', fontWeight: 800, color: '#0f172a', marginBottom: '1rem', letterSpacing: '-1px' }}>
+          <h2 className="faq-heading" style={{ fontSize: '3rem', fontWeight: 800, color: '#0f172a', marginBottom: '1rem', letterSpacing: '-1px' }}>
             Frequently Asked <span style={{ color: '#cc0000' }}>Questions</span>
           </h2>
           <p style={{ fontSize: '1.1rem', color: '#64748b', maxWidth: '600px', margin: '0 auto' }}>

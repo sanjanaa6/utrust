@@ -32,8 +32,8 @@ function App() {
       <Header onNavigate={handleNavigate} currentPage={currentPage} />
       
       {currentPage === 'home' && <Home onNavigate={handleNavigate} />}
-      {currentPage === 'buy' && <BuyPage onCarSelect={handleCarSelect} initialFilters={initialFilters} />}
-      {currentPage === 'sell' && <SellPage />}
+      {currentPage === 'buy' && <BuyPage onCarSelect={handleCarSelect} initialFilters={initialFilters} onNavigate={handleNavigate} />}
+      {currentPage === 'sell' && <SellPage onNavigate={handleNavigate} />}
 
       {currentPage === 'car-detail' && selectedCar && (
         <CarDetailPage car={selectedCar} onBack={() => handleNavigate('buy')} />

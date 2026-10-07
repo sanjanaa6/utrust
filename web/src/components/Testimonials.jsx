@@ -64,7 +64,7 @@ const Testimonials = () => {
           <h2 style={{ fontSize: '2.5rem', fontWeight: 700, color: '#222' }}>Testimonials</h2>
         </div>
 
-        <div style={{ maxWidth: '1000px', margin: '0 auto', position: 'relative' }}>
+        <div style={{ width: '92%', maxWidth: '1200px', margin: '0 auto', position: 'relative' }}>
           <div
             style={{
               display: 'flex',
@@ -74,7 +74,7 @@ const Testimonials = () => {
               borderRadius: '24px',
               boxShadow: '0 20px 40px rgba(0,0,0,0.08)',
               overflow: 'hidden',
-              minHeight: '400px'
+              height: '450px'
             }}
             className="testimonial-card-mobile"
           >

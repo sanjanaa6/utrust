@@ -25,7 +25,7 @@ const Header = ({ onNavigate, currentPage }) => {
         
         <div className="main-header">
           <div className="container main-header-content" style={{ flexWrap: 'wrap', gap: '1rem', justifyContent: 'center' }}>
-            <div className="flex items-center" style={{ flexWrap: 'wrap', justifyContent: 'center' }}>
+            <div className="header-brand flex items-center" style={{ flexWrap: 'wrap', justifyContent: 'center' }}>
               <div className="logo-container" onClick={() => onNavigate && onNavigate('home')} style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
                 <img 
                   src="/utrust_logo.png" 
@@ -34,7 +34,7 @@ const Header = ({ onNavigate, currentPage }) => {
                 />
               </div>
               
-              <nav style={{ display: 'flex', gap: '2rem', marginLeft: '2.5rem' }}>
+              <nav className="header-nav" style={{ display: 'flex', gap: '2rem', marginLeft: '2.5rem' }}>
                 <a 
                   href="#" 
                   style={{ 
@@ -66,7 +66,7 @@ const Header = ({ onNavigate, currentPage }) => {
               </nav>
             </div>
 
-            <div style={{ 
+            <div className="header-search-bar" style={{ 
               display: 'flex', 
               alignItems: 'center', 
               border: '1px solid #ccc', 
@@ -106,7 +106,7 @@ const Header = ({ onNavigate, currentPage }) => {
                 <img 
                   src="/nandi_toyota_logo.png" 
                   alt="Nandi Toyota" 
-                  style={{ height: '40px', objectFit: 'contain', transform: 'scale(2.5)', margin: '0 25px 0 15px' }}
+                  style={{ height: '40px', objectFit: 'contain', transform: 'scale(4)', margin: '0 35px 0 25px' }}
                 />
                 <span className="toyota-new-badge" style={{ position: 'absolute', top: '-2px', right: '-12px', color: '#d30000', fontSize: '0.65rem', fontWeight: 800, fontStyle: 'italic', zIndex: 2 }}>NEW</span>
               </a>

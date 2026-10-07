@@ -100,7 +100,7 @@ const NewArrivals = () => {
       <div className="container" style={{ position: 'relative' }}>
         
         {/* Tabs */}
-        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '3rem', borderBottom: '1px solid #ddd' }}>
+        <div className="new-arrivals-tabs" style={{ display: 'flex', justifyContent: 'center', marginBottom: '3rem', borderBottom: '1px solid #ddd' }}>
           <button
             style={{
               padding: '1rem 2.5rem',
@@ -137,6 +137,7 @@ const NewArrivals = () => {
 
         {/* Scroll Controls */}
         <button 
+          className="hide-on-mobile"
           onClick={() => scroll('left')}
           style={{ position: 'absolute', left: '-30px', top: '55%', transform: 'translateY(-50%)', background: 'none', border: 'none', cursor: 'pointer', zIndex: 10 }}
         >
@@ -144,6 +145,7 @@ const NewArrivals = () => {
         </button>
         
         <button 
+          className="hide-on-mobile"
           onClick={() => scroll('right')}
           style={{ position: 'absolute', right: '-30px', top: '55%', transform: 'translateY(-50%)', background: 'none', border: 'none', cursor: 'pointer', zIndex: 10 }}
         >

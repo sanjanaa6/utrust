@@ -39,24 +39,28 @@ const HappyCustomers = () => {
   };
 
   const handleNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % displayedVideos.length);
+    if (currentIndex < displayedVideos.length - 1) {
+      setCurrentIndex((prev) => prev + 1);
+    }
   };
 
   const handlePrev = () => {
-    setCurrentIndex((prev) => (prev - 1 + displayedVideos.length) % displayedVideos.length);
+    if (currentIndex > 0) {
+      setCurrentIndex((prev) => prev - 1);
+    }
   };
 
   const currentVideo = displayedVideos[currentIndex];
 
   return (
     <section style={{ padding: '5rem 0', backgroundColor: '#f8f9fa' }}>
-      <div className="container" style={{ maxWidth: '800px', margin: '0 auto', padding: '0 1rem', position: 'relative' }}>
+      <div className="container" style={{ width: '92%', maxWidth: '1200px', margin: '0 auto', padding: '0 1rem', position: 'relative' }}>
         <h2 style={{ fontSize: '2.5rem', fontWeight: 600, textAlign: 'center', marginBottom: '3rem', color: '#222' }}>
           Happy <span style={{ color: '#cc0000' }}>Customers</span>
         </h2>
 
         {/* Tabs */}
-        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '3rem', borderBottom: '1px solid #ddd' }}>
+        <div className="happy-tabs-container" style={{ display: 'flex', justifyContent: 'center', marginBottom: '3rem', borderBottom: '1px solid #ddd' }}>
           <button
             style={{
               padding: '1rem 3rem',
@@ -92,33 +96,35 @@ const HappyCustomers = () => {
         </div>
 
         {/* Video Slider Area */}
-        <div style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '2rem' }}>
 
           {/* Left Arrow */}
           <button
             className="happy-arrow-left"
             onClick={handlePrev}
+            disabled={currentIndex === 0}
             style={{
-              position: 'absolute', left: '10px', background: 'rgba(255,255,255,0.7)', borderRadius: '50%', border: 'none',
-              cursor: 'pointer', zIndex: 10, padding: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center'
+              flexShrink: 0, background: currentIndex === 0 ? '#f0f0f0' : '#fff', borderRadius: '50%', border: '1px solid #ddd',
+              cursor: currentIndex === 0 ? 'not-allowed' : 'pointer', padding: '15px', display: 'flex', alignItems: 'center', justifyContent: 'center',
+              boxShadow: currentIndex === 0 ? 'none' : '0 4px 15px rgba(0,0,0,0.1)', transition: 'all 0.2s', opacity: currentIndex === 0 ? 0.5 : 1
             }}
           >
-            <ChevronLeft size={30} color="#333" />
+            <ChevronLeft size={30} color={currentIndex === 0 ? "#aaa" : "#333"} />
           </button>
 
           {/* Current Video Card */}
-          <div style={{
+          <div className="happy-video-container" style={{
             backgroundColor: '#fff',
-            borderRadius: '12px',
+            borderRadius: '24px',
             overflow: 'hidden',
             boxShadow: '0 8px 25px rgba(0,0,0,0.1)',
-            width: '100%',
-            maxWidth: '750px', // Wider landscape player
+            flex: 1,
+            maxWidth: '900px',
             display: 'flex',
             flexDirection: 'column',
             transition: 'opacity 0.3s ease-in-out'
           }}>
-            <div style={{ width: '100%', aspectRatio: '16/9', backgroundColor: '#000', position: 'relative' }}>
+            <div className="happy-video-wrapper" style={{ width: '100%', height: '500px', backgroundColor: '#000', position: 'relative' }}>
               <video
                 ref={videoRef}
                 src={currentVideo.src}
@@ -138,9 +144,6 @@ const HappyCustomers = () => {
               <h3 style={{ fontSize: '1.2rem', fontWeight: 600, color: '#333', margin: 0 }}>
                 {currentVideo.title}
               </h3>
-              <p style={{ fontSize: '0.9rem', color: '#888', marginTop: '0.5rem' }}>
-                Video {currentIndex + 1} of {displayedVideos.length}
-              </p>
             </div>
           </div>
 
@@ -148,12 +151,14 @@ const HappyCustomers = () => {
           <button
             className="happy-arrow-right"
             onClick={handleNext}
+            disabled={currentIndex === displayedVideos.length - 1}
             style={{
-              position: 'absolute', right: '10px', background: 'rgba(255,255,255,0.7)', borderRadius: '50%', border: 'none',
-              cursor: 'pointer', zIndex: 10, padding: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center'
+              flexShrink: 0, background: currentIndex === displayedVideos.length - 1 ? '#f0f0f0' : '#fff', borderRadius: '50%', border: '1px solid #ddd',
+              cursor: currentIndex === displayedVideos.length - 1 ? 'not-allowed' : 'pointer', padding: '15px', display: 'flex', alignItems: 'center', justifyContent: 'center',
+              boxShadow: currentIndex === displayedVideos.length - 1 ? 'none' : '0 4px 15px rgba(0,0,0,0.1)', transition: 'all 0.2s', opacity: currentIndex === displayedVideos.length - 1 ? 0.5 : 1
             }}
           >
-            <ChevronRight size={30} color="#333" />
+            <ChevronRight size={30} color={currentIndex === displayedVideos.length - 1 ? "#aaa" : "#333"} />
           </button>
 
         </div>

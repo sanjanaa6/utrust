@@ -1,20 +1,22 @@
 import React from 'react';
 import { ChevronRight, RefreshCcw } from 'lucide-react';
 
-const SellPage = () => {
+const SellPage = ({ onNavigate }) => {
   return (
     <div style={{ backgroundColor: '#fcfdfd', minHeight: 'calc(100vh - 150px)', padding: '2rem 0 4rem 0', fontFamily: "'Inter', sans-serif" }}>
       <div className="container" style={{ maxWidth: '1000px', margin: '0 auto' }}>
         {/* Breadcrumb */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '2rem', fontSize: '0.9rem', color: '#666', fontWeight: 500 }}>
-          <span style={{ cursor: 'pointer', transition: 'color 0.2s' }} onMouseOver={e=>e.target.style.color='#cc0000'} onMouseOut={e=>e.target.style.color='#666'}>Home</span>
+          <span onClick={() => onNavigate && onNavigate('home')} style={{ cursor: 'pointer', transition: 'color 0.2s' }} onMouseOver={e=>e.target.style.color='#cc0000'} onMouseOut={e=>e.target.style.color='#666'}>Home</span>
           <ChevronRight size={14} color="#aaa" />
           <span style={{ color: '#111', fontWeight: 600 }}>Sell Car</span>
         </div>
 
         {/* Exchange Bonus Banner */}
         <div style={{ 
-          background: 'linear-gradient(135deg, #cc0000 0%, #8a0000 100%)', 
+          backgroundImage: 'linear-gradient(to right, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.1) 100%), url("https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1600&q=80")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
           borderRadius: '16px', 
           padding: '2rem', 
           color: 'white', 

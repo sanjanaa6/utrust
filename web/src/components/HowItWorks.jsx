@@ -8,10 +8,10 @@ const HowItWorks = () => {
           Discover Your <span style={{ color: '#cc0000' }}>Dream Wheels</span>
         </h2>
         
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', position: 'relative' }}>
+        <div className="how-it-works-flex" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', position: 'relative' }}>
           
           {/* Arrow 1 */}
-          <div style={{ position: 'absolute', top: '30%', left: '23%', width: '20%', zIndex: 0 }}>
+          <div className="how-it-works-arrow" style={{ position: 'absolute', top: '30%', left: '23%', width: '20%', zIndex: 0 }}>
             <svg width="100%" height="100" viewBox="0 0 200 100" fill="none" style={{ overflow: 'visible' }}>
               <path d="M 20 80 C 80 80, 120 20, 180 20" stroke="#cbd5e1" strokeWidth="2" strokeDasharray="8 8" fill="none" strokeLinecap="round" />
               <path d="M 170 12 L 182 20 L 172 28" stroke="#cbd5e1" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
@@ -19,7 +19,7 @@ const HowItWorks = () => {
           </div>
 
           {/* Arrow 2 */}
-          <div style={{ position: 'absolute', top: '30%', left: '57%', width: '20%', zIndex: 0 }}>
+          <div className="how-it-works-arrow" style={{ position: 'absolute', top: '30%', left: '57%', width: '20%', zIndex: 0 }}>
             <svg width="100%" height="100" viewBox="0 0 200 100" fill="none" style={{ overflow: 'visible' }}>
               <path d="M 20 20 C 80 20, 120 80, 180 80" stroke="#cbd5e1" strokeWidth="2" strokeDasharray="8 8" fill="none" strokeLinecap="round" />
               <path d="M 172 72 L 182 80 L 170 88" stroke="#cbd5e1" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
@@ -27,7 +27,7 @@ const HowItWorks = () => {
           </div>
 
           {/* Step 1 */}
-          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0 1rem', zIndex: 1 }}>
+          <div className="how-it-works-step" style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0 1rem', zIndex: 1 }}>
             <div style={{ height: '220px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem' }}>
               <img src="/assets/step1.png" alt="Discover Your Ideal Car" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/280x200/f8f9fa/a0aec0?text=Upload+step1.png" }} />
             </div>
@@ -38,7 +38,7 @@ const HowItWorks = () => {
           </div>
 
           {/* Step 2 */}
-          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0 1rem', zIndex: 1 }}>
+          <div className="how-it-works-step" style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0 1rem', zIndex: 1 }}>
             <div style={{ height: '220px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem' }}>
               <img src="/assets/step2.png" alt="Streamlined Enquiry Process" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/280x200/f8f9fa/a0aec0?text=Upload+step2.png" }} />
             </div>
@@ -49,7 +49,7 @@ const HowItWorks = () => {
           </div>
 
           {/* Step 3 */}
-          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0 1rem', zIndex: 1 }}>
+          <div className="how-it-works-step" style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0 1rem', zIndex: 1 }}>
             <div style={{ height: '220px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem' }}>
               <img src="/assets/step3.png" alt="Enquiry Sent Successfully!" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/280x200/f8f9fa/a0aec0?text=Upload+step3.png" }} />
             </div>

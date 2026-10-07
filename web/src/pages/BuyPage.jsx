@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Search, ChevronDown, Check, Bookmark, MapPin } from 'lucide-react';
 
-const BuyPage = ({ onCarSelect, initialFilters }) => {
+const BuyPage = ({ onCarSelect, initialFilters, onNavigate }) => {
   const defaultPriceRange = initialFilters?.budget 
     ? initialFilters.budget.split('-').map(Number)
     : [50000, 7000000];
@@ -211,7 +211,7 @@ const BuyPage = ({ onCarSelect, initialFilters }) => {
         
         {/* Breadcrumb */}
         <div style={{ fontSize: '0.9rem', color: '#555', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <span>Home</span>
+          <span onClick={() => onNavigate && onNavigate('home')} style={{ cursor: 'pointer', transition: 'color 0.2s' }} onMouseOver={e => e.currentTarget.style.color = '#cc0000'} onMouseOut={e => e.currentTarget.style.color = '#555'}>Home</span>
           <span style={{ color: '#aaa' }}>&gt;</span>
           <span style={{ fontWeight: 600, color: '#222' }}>Buy Car</span>
         </div>
